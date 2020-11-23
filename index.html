@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Dashboard</title>
+    <!-- Bootstrap-->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+    <!-- Font Awesome CSS Icons (For cool glyphicons) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+</head>
+
+<body>
+    <!--City Search-->
+    <div class="container">
+
+        <div class="jumbotron" style="background-color: aqua; color: whitesmoke;">
+            <h1 class="text-center">
+                <!-- use <i></i> to add logos-->
+                Weather Dashboard
+            </h1>
+        </div>
+
+        <!--Row for recent search Results-->
+        <div class="row">
+
+        </div>
+
+
+        <!--Row for city search-->
+        <div class="row">
+
+            <!--Search funtion column-->
+            <div class="col-sm-6">
+                <br>
+                <!--"title"-->
+                <div class="card">
+                    <div class="card-header">
+                        <!--add logos later-->
+                        <h3>Search a City:</h3>
+                    </div>
+                    <div class="card-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="city">City:</label>
+                                <input type="text" class="form-control" id="search-term">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--^^needs to display past city searches.. may be like activity 10?-->
+
+            <!--Results from search-->
+            <div class="col-sm-6">
+                <div class="card">
+                    <!--header-->
+                    <div class="card-header">
+                        <h3>The Forecast</h3>
+                    </div>
+                    <!--Results will populate this div-->
+                    <div class="card-body" id="weather-section">
+
+                    </div>
+                </div>
+            </div>
+            <!--needs to be displaying most recent search results before being populated with new results!-->
+        </div>
+
+        <!--Row for 5 day forecast-->
+        <div class="row">
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
