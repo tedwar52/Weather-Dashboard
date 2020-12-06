@@ -9,11 +9,14 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
     <!-- Font Awesome CSS Icons (For cool glyphicons) -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <style>
+
+    </style>
 </head>
 
 <body>
-    <!--City Search-->
-    <div class="container">
+    <!--Banner-->
+    <div class="container-fluid">
 
         <div class="jumbotron" style="background-color: aqua; color: whitesmoke;">
             <h1 class="text-center">
@@ -22,39 +25,37 @@
             </h1>
         </div>
 
-        <!--Row for recent search Results-->
+    </div>
+    <div class="container">
+        <!--Row 1; 2 columns::: search takes up 1/4, results 3/4-->
         <div class="row">
 
-        </div>
+            <!--City Search-->
+            <div id="search-form">
 
-
-        <!--Row for city search-->
-        <div class="row">
-
-            <!--Search funtion column-->
-            <div class="col-sm-6">
-                <br>
-                <!--"title"-->
-                <div class="card">
-                    <div class="card-header">
-                        <!--add logos later-->
-                        <h3>Search a City:</h3>
-                    </div>
-                    <div class="card-body">
-                        <form role="form">
-                            <div class="form-group">
-                                <label for="city">City:</label>
-                                <input type="text" class="form-control" id="search-term">
-                            </div>
-                            <button type="submit" id="run-search">Search</button>
-                        </form>
+                <!--Search funtion column-->
+                <div class="col">
+                    <!--"title"-->
+                    <div class="card">
+                        <div class="card-header">
+                            <!--add logos later-->
+                            <h3>Search a City:</h3>
+                        </div>
+                        <div class="card-body">
+                            <form role="form">
+                                <div class="form-group">
+                                    <label for="city">City:</label>
+                                    <input type="text" class="form-control" id="search-term">
+                                </div>
+                                <button type="submit" id="run-search">Search</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
+                <!--^^needs to display past city searches.. may be like activity 10?-->
             </div>
-            <!--^^needs to display past city searches.. may be like activity 10?-->
-
-            <!--Results from search-->
-            <div class="col-sm-6">
+            <!--Results from searh-->
+            <div class="col-4">
                 <div class="card">
                     <!--header-->
                     <div class="card-header">
@@ -62,12 +63,15 @@
                     </div>
                     <!--Results will populate this div-->
                     <div class="card-body" id="daily">
-
                     </div>
                 </div>
             </div>
             <!--needs to be displaying most recent search results before being populated with new results!-->
+
         </div>
+
+
+
 
         <!--Row for 5 day forecast-->
         <div class="row">
@@ -85,8 +89,11 @@
             </div>
 
         </div>
-
     </div>
+
+
+
+
 
     <!-- jQuery JS -->
     <script src="https://code.jquery.com/jquery.js"></script>
