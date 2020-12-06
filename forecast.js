@@ -1,16 +1,5 @@
-/*
-$(document).ready(function () {
-    var input = "";
-
-    $("#run-search").click(function () {
-        $("#search-term").each(function () {
-            $
-        })
-    })
-});
-*/
 /** 
-@returns {string}
+*@returns {string}
 */
 
 function buildQueryURL() {
@@ -34,13 +23,13 @@ function buildQueryURL() {
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + apikey;
 
 
-    console.log(queryURL);
+    console.log(queryURL); //this is working
 }
 /**
  * @param {object} currentForecast
  */
 function forecastResult(currentForecast) {
-    console.log(currentForecast);
+    console.log(currentForecast); //this is NOT
     var results = currentForecast.data;
     /*i will need to create a unique piece for each component i want to display from the results!.. then append & prepend each one*/
     for (var i = 0; i < results.length; i++) {
@@ -51,37 +40,41 @@ function forecastResult(currentForecast) {
         location.text(name[i].name);
         locationDiv.append(location);
         //date
-        $("#weather-section").append(locationDiv);
+        var today = new Date();
+        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        /*do i need to set the date as an attribute onto a new <p>?*/
+        locationDiv.append(date);
+        $("#daily").append(locationDiv)
         //weather description -- will need icon representation//
         var descriptionDiv = $("<div>");
         var description = $("<img>");
         description.text(weather[i].icon);
         descriptionDiv.append(description);
-        $("#weather-section").append(descriptionDiv);
+        $("#daily").append(descriptionDiv);
         //temperature//
         var tempDiv = $("<div>");
         var temp = $("<p>");
         temp.text(main[i].temp);
         tempDiv.append(temp);
-        $("#weather-section").append(tempDiv);
+        $("#daily").append(tempDiv);
         //humidity//
         var humidityDiv = $("<div>");
         var humidity = $("<p>");
         humidity.text(main[i].humidity);
         humidityDiv.append(humidity);
-        $("#weather-section").append(humidityDiv);
+        $("#daily").append(humidityDiv);
         //wind speed//
         var windDiv = $("<div>");
         var windSpeed = $("<p>");
         windSpeed.text(wind[i].speed);
         windDiv.append(windSpeed);
-        $("#weather-section").append(windDiv);
+        $("#daily").append(windDiv);
         //uv index//
         var uvDiv = $("<div>");
         var uvIndex = $("<p>");
         uvIndex.text(main[i].humidity);
         humidityDiv.append(humidity);
-        $("#weather-section").append(humidityDiv);
+        $("#daily").append(humidityDiv);
     };
 }
 
@@ -93,4 +86,15 @@ $("#run-search").on("click", function(event) {
         url: queryURL,
     }).then(forecastResult);
     console.log("It searched!");
-})
+});
+
+//----------------NOTES-----------------------------
+
+//  can clean up code under forecastResult function... can probably append several new components to one or two divs instead of creating a new one for each component
+
+//  will probably want to display results in a card component (check html!!)
+
+// console.log on line 32 is NOT working
+// is making a currentForecast object necessary? am I doing that part right? is this the source of an error
+
+//ensure the date displays correctly -- line 45
