@@ -82,13 +82,16 @@ function forecastResult(currentForecast) {
     };
 }
 
+//--this saves my searched cities as data
 function saveSearch() {
 
     $("#old-cities").empty();
 
     for (var i = 0; i < searchedCities.length; i++) {
         var a = $("<button>");
-        a.addClass("city-btn");
+        a.addClass("btn-lg");
+        a.addClass("btn-outline-primary");
+        a.addClass("btn-block");
         a.attr("data-name", searchedCities[i]);
         a.text(searchedCities[i]);
         $("#old-cities").append(a);
@@ -105,6 +108,7 @@ $("#run-search").on("click", function(event) {
     }).then(forecastResult);
     console.log("It searched!");
 
+    //save my search and push it into my searchedCities array
     searchedCities.push(search);
     saveSearch();
     
