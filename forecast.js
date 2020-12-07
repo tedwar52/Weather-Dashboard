@@ -22,7 +22,9 @@ function buildQueryURL() {
     
     const citySearch = $("#search-term").val().trim();
 
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + citySearch + apikey;
+    const units = "&units=imperial";
+
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + citySearch + units + apikey;
     
     
     console.log(queryURL); //this is working
@@ -36,7 +38,7 @@ function buildQueryURL() {
 
         console.log("searching...");
         //console.log(response.weather[0].description);
-        //Name of City//
+        //Name of City
         var locationDiv = $("<div>");
         var location = $("<p>");
         location.text(response.name);
@@ -47,63 +49,37 @@ function buildQueryURL() {
         var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
         locationDiv.append(date);
         $("#daily").prepend(locationDiv);
-    })
-}
-/**
- * @param {object} currentForecast
- */
-function forecastResult() {
-    console.log(currentForecast); //this is NOT working
 
-    $("#daily").empty();
-    var results = currentForecast.data;
-    /*i will need to create a unique piece for each component i want to display from the results!.. then append & prepend each one*/
-    for (var i = 0; i < results.length; i++) {
-        
-        console.log(results[i].name);
-
-        //name of city//
-        var locationDiv = $("<div>");
-        var location = $("<p>");
-        location.text(name[i].name);
-        locationDiv.append(location);
-        //date
-        var today = new Date();
-        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-        /*do i need to set the date as an attribute onto a new <p>?*/
-        locationDiv.append(date);
-        $("#daily").prepend(locationDiv)
-        //weather description -- will need icon representation//
+        //Weather Description Icon
         var descriptionDiv = $("<div>");
-        var description = $("<img>");
-        description.text(weather[i].icon);
+        var iconURL = response.weather[0].icon;
+        var description = $("<img>").attr("src", iconURL);
         descriptionDiv.append(description);
-        $("#daily").prepend(descriptionDiv);
-        //temperature//
+        $("#daily").append(descriptionDiv);
+
+        //Temperature
         var tempDiv = $("<div>");
         var temp = $("<p>");
-        temp.text(main[i].temp);
+        temp.text(response.main.temp);
         tempDiv.append(temp);
-        $("#daily").prepend(tempDiv);
-        //humidity//
+        $("#daily").append(tempDiv);
+
+        //Humidity
         var humidityDiv = $("<div>");
         var humidity = $("<p>");
-        humidity.text(main[i].humidity);
+        humidity.text(response.main.humidity);
         humidityDiv.append(humidity);
-        $("#daily").prepend(humidityDiv);
-        //wind speed//
+        $("#daily").append(humidityDiv);
+
+        //Wind Speed
         var windDiv = $("<div>");
         var windSpeed = $("<p>");
-        windSpeed.text(wind[i].speed);
+        windSpeed.text(response.wind.speed);
         windDiv.append(windSpeed);
-        $("#daily").prepend(windDiv);
-        //uv index//
-        var uvDiv = $("<div>");
-        var uvIndex = $("<p>");
-        uvIndex.text(main[i].humidity);
-        uvDiv.append(uvIndex);
-        $("#daily").prepend(uvDiv);
-    };
+        $("#daily").append(windDiv);
+
+        //UV Index
+    })
 }
 
 //--this saves my searched cities as data
@@ -126,12 +102,7 @@ $("#run-search").on("click", function(event) {
     event.preventDefault();
     /*clear();*/
     var search = $("#search-term").val().trim();
-    /*var queryURL = buildQueryURL();
-   $.ajax({
-        url: queryURL,
-    }).then(forecastResult);
-    console.log("It searched!");
-    */
+  
    buildQueryURL();
 
     //save my search and push it into my searchedCities array
