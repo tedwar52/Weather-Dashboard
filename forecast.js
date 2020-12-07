@@ -23,14 +23,36 @@ function buildQueryURL() {
     const citySearch = $("#search-term").val().trim();
 
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + citySearch + apikey;
-
-
+    
+    
     console.log(queryURL); //this is working
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response) {
+
+        $("#daily").empty();
+
+        console.log("searching...");
+        //console.log(response.weather[0].description);
+        //Name of City//
+        var locationDiv = $("<div>");
+        var location = $("<p>");
+        location.text(response.name);
+        locationDiv.append(location);
+        
+        //Date
+        var today = new Date();
+        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        locationDiv.append(date);
+        $("#daily").prepend(locationDiv);
+    })
 }
 /**
  * @param {object} currentForecast
  */
-function forecastResult(currentForecast) {
+function forecastResult() {
     console.log(currentForecast); //this is NOT working
 
     $("#daily").empty();
@@ -38,6 +60,8 @@ function forecastResult(currentForecast) {
     /*i will need to create a unique piece for each component i want to display from the results!.. then append & prepend each one*/
     for (var i = 0; i < results.length; i++) {
         
+        console.log(results[i].name);
+
         //name of city//
         var locationDiv = $("<div>");
         var location = $("<p>");
@@ -77,8 +101,8 @@ function forecastResult(currentForecast) {
         var uvDiv = $("<div>");
         var uvIndex = $("<p>");
         uvIndex.text(main[i].humidity);
-        humidityDiv.append(humidity);
-        $("#daily").prepend(humidityDiv);
+        uvDiv.append(uvIndex);
+        $("#daily").prepend(uvDiv);
     };
 }
 
@@ -102,11 +126,13 @@ $("#run-search").on("click", function(event) {
     event.preventDefault();
     /*clear();*/
     var search = $("#search-term").val().trim();
-    var queryURL = buildQueryURL();
-    $.ajax({
+    /*var queryURL = buildQueryURL();
+   $.ajax({
         url: queryURL,
     }).then(forecastResult);
     console.log("It searched!");
+    */
+   buildQueryURL();
 
     //save my search and push it into my searchedCities array
     searchedCities.push(search);
