@@ -8,14 +8,30 @@ function buildLongURL() {
     const city = "Asheville";
     const citySearch = $("#search-term").val().trim();
     const apiKey = "&appid=a7006c74c28e21c72439b32d4b4920ec";
+    const units = "&units=imperial";
 
-    const longURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + apiKey;
+    const longURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + citySearch + units + apiKey;
 
     console.log(longURL);
+
+    $.ajax({
+        url: longURL,
+        method: "GET"
+    }).then(function(response) {
+
+        console.log(response.list[0].dt_text);
+        //DAY 1
+        for (var i = 0; i < 5; i++) {
+            //date
+            console.log(response.list[i].main.temp); //THIS WORKS
+
+            var date1 = $("<p>");
+            date1.text(response.list[i].dt_txt);
+            $("#forecast").append(date1);
+        }
+    })
 }
-/**
- * @param {object} longForecast
- */
+
 function weatherResult(longForecast) {
     console.log(longForecast)
     var results = longForecast.data;
@@ -41,7 +57,7 @@ function weatherResult(longForecast) {
         //humidity//
         var humidity1 = $("<p>");
         humidity1.text(list[i].main.humidity);
-        
+
         $("#forecast").append(day1);
     }
 }
@@ -50,8 +66,6 @@ $("#run-search").on("click", function(event) {
     event.preventDefault();
     /*clear();*/
     var longURL = buildLongURL();
-    $.ajax({
-        url: longURL,
-    });
+    
     console.log("It searched for 5 day forecast!");
 });
