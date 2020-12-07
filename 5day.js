@@ -31,9 +31,12 @@ function buildLongURL() {
             $("#forecast").append(day);
 
             //Weather Conditions Icon
-            var iconURL = response.list[i].weather[0].icon;
+            var iconDiv = $("<div>");
+            var iconcode = response.list[i].weather[0].icon;
+            var iconURL = "http://openweathermap.org/img/w/" + iconcode + ".png";
             var icon = $("<img>").attr("src", iconURL);
-            day.append(icon);
+            iconDiv.append(icon);
+            day.append(iconDiv);
             $("#forecast").append(day);
             
             //Temperature

@@ -52,7 +52,8 @@ function buildQueryURL() {
 
         //Weather Description Icon
         var descriptionDiv = $("<div>");
-        var iconURL = response.weather[0].icon;
+        var iconcode = response.weather[0].icon;
+        var iconURL = "http://openweathermap.org/img/w/" + iconcode + ".png";
         var description = $("<img>").attr("src", iconURL);
         descriptionDiv.append(description);
         $("#daily").append(descriptionDiv);
