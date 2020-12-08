@@ -121,22 +121,17 @@ $("#run-search").on("click", function(event) {
     
 });
 
-$(document).on("click", "#city-btn", buildQueryURL);
+$(document).on("click", ".city-btn", buildQueryURL);
+saveSearch();
 
 //----------------NOTES-----------------------------
 
-
-//should probably display everything in card components
-
-//create new URL for 5-day forecast so it is not using the 5day api with 3hr updates
 
 //still need to workout out UV Index!!
 //----take lat and lon data from original api call
 //-----create new url using that data
 //------new ajax call using new url, then have it display
 //-------colour code the results based on favourable, moderate, or severe
-
-//have 5 day forecast display side by side!!
 
 //need old search results to display when the page opens, not just at the click of a button!
 //those buttons need to be clickable --> bring up old search results!
