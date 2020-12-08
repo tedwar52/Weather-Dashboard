@@ -9,20 +9,17 @@ function buildLongURL() {
     const citySearch = $("#search-term").val().trim();
     const apiKey = "&appid=a7006c74c28e21c72439b32d4b4920ec";
     const units = "&units=imperial";
-    const cnt = "&cnt=5"
 
     const longURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + citySearch + units + apiKey;
 
-    const URL = "https://api.openweathermap.org/data/2.5/forecast/daily?q=" + citySearch + units + cnt + apiKey;
-
-
-    console.log(URL);
 
     $.ajax({
         url: longURL,
         method: "GET"
     }).then(function(response) {
 
+        $("#forecast").empty();
+        
         for (var i = 0; i < response.list.length; i++) {
                if (response.list[i].dt_txt.indexOf("12:00:00") !== -1) {
                    console.log(response.list[i].dt_txt);

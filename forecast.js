@@ -108,6 +108,7 @@ function saveSearch() {
     }
 }
 
+
 $("#run-search").on("click", function(event) {
     event.preventDefault();
     /*clear();*/
@@ -121,7 +122,6 @@ $("#run-search").on("click", function(event) {
     
 });
 
-$(document).on("click", ".city-btn", buildQueryURL);
 saveSearch();
 
 //----------------NOTES-----------------------------
