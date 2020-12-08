@@ -9,23 +9,29 @@ function buildLongURL() {
     const citySearch = $("#search-term").val().trim();
     const apiKey = "&appid=a7006c74c28e21c72439b32d4b4920ec";
     const units = "&units=imperial";
+    const cnt = "&cnt=5"
 
     const longURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + citySearch + units + apiKey;
 
-    console.log(longURL);
+    const URL = "https://api.openweathermap.org/data/2.5/forecast/daily?q=" + citySearch + units + cnt + apiKey;
+
+
+    console.log(URL);
 
     $.ajax({
         url: longURL,
         method: "GET"
     }).then(function(response) {
-        
-        for (var i = 0; i < 5; i++) {
-            //Create new card component for each day
+
+        for (var i = 0; i < response.list.length; i++) {
+               if (response.list[i].dt_txt.indexOf("12:00:00") !== -1) {
+                   console.log(response.list[i].dt_txt);
+             //Create new card component for each day
             var day = $("<div>");
             day.addClass("card");
 
             //Date
-            var date = $("<p>");
+            var date = $("<h5>");
             date.text(response.list[i].dt_txt);
             day.append(date);
             $("#forecast").append(day);
@@ -41,17 +47,18 @@ function buildLongURL() {
             
             //Temperature
             var temp = $("<p>");
-            temp.text(response.list[i].main.temp);
+            temp.text("Temperature: " + response.list[i].main.temp);
             day.append(temp);
             $("#forecast").append(day);
 
             //Humidity
             var humidity = $("<p>");
-            humidity.text(response.list[i].main.humidity);
+            humidity.text("Humidity: " + response.list[i].main.humidity);
             day.append(humidity);
             $("#forecast").append(day);
 
-        }
+               }
+           }
     })
 }
 
