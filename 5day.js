@@ -19,7 +19,7 @@ function buildLongURL() {
     }).then(function(response) {
 
         $("#forecast").empty();
-        
+
         for (var i = 0; i < response.list.length; i++) {
                if (response.list[i].dt_txt.indexOf("12:00:00") !== -1) {
                    console.log(response.list[i].dt_txt);
@@ -44,13 +44,13 @@ function buildLongURL() {
             
             //Temperature
             var temp = $("<p>");
-            temp.text("Temperature: " + response.list[i].main.temp);
+            temp.text("Temperature: " + response.list[i].main.temp + "F");
             day.append(temp);
             $("#forecast").append(day);
 
             //Humidity
             var humidity = $("<p>");
-            humidity.text("Humidity: " + response.list[i].main.humidity);
+            humidity.text("Humidity: " + response.list[i].main.humidity + "%");
             day.append(humidity);
             $("#forecast").append(day);
 

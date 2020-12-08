@@ -69,21 +69,21 @@ function buildQueryURL() {
         //Temperature
         var tempDiv = $("<div>");
         var temp = $("<p>");
-        temp.text("Temperature: " + response.main.temp);
+        temp.text("Temperature: " + response.main.temp + "F");
         tempDiv.append(temp);
         $("#daily").append(tempDiv);
 
         //Humidity
         var humidityDiv = $("<div>");
         var humidity = $("<p>");
-        humidity.text("Humidity: " + response.main.humidity);
+        humidity.text("Humidity: " + response.main.humidity + "%");
         humidityDiv.append(humidity);
         $("#daily").append(humidityDiv);
 
         //Wind Speed
         var windDiv = $("<div>");
         var windSpeed = $("<p>");
-        windSpeed.text("Wind Speed: " + response.wind.speed);
+        windSpeed.text("Wind Speed: " + response.wind.speed + "mph");
         windDiv.append(windSpeed);
         $("#daily").append(windDiv);
 

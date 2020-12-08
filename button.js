@@ -41,21 +41,21 @@ function buttonSearchSingle () {
         //Temperature
         var tempDiv = $("<div>");
         var temp = $("<p>");
-        temp.text("Temperature: " + response.main.temp);
+        temp.text("Temperature: " + response.main.temp + "F");
         tempDiv.append(temp);
         $("#daily").append(tempDiv);
 
         //Humidity
         var humidityDiv = $("<div>");
         var humidity = $("<p>");
-        humidity.text("Humidity: " + response.main.humidity);
+        humidity.text("Humidity: " + response.main.humidity + "%");
         humidityDiv.append(humidity);
         $("#daily").append(humidityDiv);
 
         //Wind Speed
         var windDiv = $("<div>");
         var windSpeed = $("<p>");
-        windSpeed.text("Wind Speed: " + response.wind.speed);
+        windSpeed.text("Wind Speed: " + response.wind.speed + "mph");
         windDiv.append(windSpeed);
         $("#daily").append(windDiv);
 
@@ -76,7 +76,7 @@ function buttonSearchMulti() {
     }).then(function(response) {
 
         $("#forecast").empty();
-        
+
         for (var i = 0; i < response.list.length; i++) {
                if (response.list[i].dt_txt.indexOf("12:00:00") !== -1) {
                    console.log(response.list[i].dt_txt);
@@ -101,13 +101,13 @@ function buttonSearchMulti() {
             
             //Temperature
             var temp = $("<p>");
-            temp.text("Temperature: " + response.list[i].main.temp);
+            temp.text("Temperature: " + response.list[i].main.temp + "F");
             day.append(temp);
             $("#forecast").append(day);
 
             //Humidity
             var humidity = $("<p>");
-            humidity.text("Humidity: " + response.list[i].main.humidity);
+            humidity.text("Humidity: " + response.list[i].main.humidity + "%");
             day.append(humidity);
             $("#forecast").append(day);
             }
